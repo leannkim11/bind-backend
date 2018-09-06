@@ -1,14 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   skip_before_action :authorized, only: %i[create]
-  before_action :find_note, only: [:update]
-
-  def profile
-      if logged_in
-        render json: { user: UserSerializer.new(current_user) }, status: :accepted
-      else
-        render json: { message: 'User not found' }, status: :not_found
-      end
-    end
+  before_action :find_user, only: [:update]
 
 
   def create
@@ -20,12 +12,6 @@ class Api::V1::UsersController < ApplicationController
       render json: { error: 'failed to create user' }, status: :not_acceptable
     end
   end
-
-  private
-
-    def user_params
-      params.require(:user).permit(:name, :email, :password)
-    end
 
   def update
     @user.update(note_params)

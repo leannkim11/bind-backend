@@ -5,6 +5,15 @@ class Api::V1::JobsController < ApplicationController
     render json: @jobs
   end
 
+  def create
+    job = Job.create(job_params)
+    render json: job
+  end
+
+  def destroy
+    Job.destroy(params[:id])
+  end
+
   def show
 
   end
