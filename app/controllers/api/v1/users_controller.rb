@@ -3,6 +3,10 @@ class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: [:update]
 
 
+  # def profile 
+  #   render json
+  # end
+
   def create
     @user = User.create(user_params)
     if @user.valid?
@@ -20,6 +24,13 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessible_entity
     end
+  end
+
+  def logged_in_user
+
+    current_user ? (render json: UserSerializer.new(current_user), status: 200) :
+
+    (render json: {message: "user not found"}, status: 404)
   end
 
   private

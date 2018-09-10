@@ -30,7 +30,7 @@ class Api::V1::JobsController < ApplicationController
   private
 
   def job_params
-    params.permit(:user_id :position, :city, :state, :industry, :description, :my_position, :company)
+    params.permit(:user_id, :position, :city, :state, :industry, :description, :my_position, :company)
   end
 
   def find_job
