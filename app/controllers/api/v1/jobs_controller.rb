@@ -1,5 +1,5 @@
 class Api::V1::JobsController < ApplicationController
-  before_action :find_note, only: [:update]
+  before_action :find_job, only: [:update]
   def index
     @jobs = Job.all
     render json: @jobs

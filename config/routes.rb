@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :users, :jobs, :bookmarks
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
-      post '/loggedin', to: 'users#logged_in_user'
+      get '/loggedin', to: 'users#logged_in_user'
     end
   end
 end
