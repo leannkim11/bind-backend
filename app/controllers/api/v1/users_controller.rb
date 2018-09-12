@@ -3,10 +3,6 @@ class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: [:update]
 
 
-  # def profile 
-  #   render json
-  # end
-
   def create
     @user = User.create(user_params)
     if @user.valid?

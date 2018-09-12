@@ -1,11 +1,12 @@
 class Api::V1::JobsController < ApplicationController
-  before_action :find_job, only: [:update]
+  before_action :find_job, only: [:update, :delete, :show]
   def index
     @jobs = Job.all
     render json: @jobs
   end
 
   def create
+    # binding.pry
     job = Job.create(job_params)
     render json: job
   end
@@ -30,7 +31,7 @@ class Api::V1::JobsController < ApplicationController
   private
 
   def job_params
-    params.permit(:user_id, :position, :city, :state, :industry, :description, :my_position, :company)
+    params.require(:job).permit(:user_id, :position, :city, :state, :industry, :description, :my_position, :company)
   end
 
   def find_job

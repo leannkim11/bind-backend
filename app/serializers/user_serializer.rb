@@ -3,4 +3,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :jobs
   has_many :bookmarks
   has_many :bookmarked_jobs, through: :bookmarks, source: :job
+  has_one :profile
 end
